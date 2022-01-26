@@ -24,9 +24,7 @@ public class King extends Piece {
         final List<Move> legalMoves = new ArrayList<>();
 
         for (final int currentPossibleOffset : POSSIBLE_COORDINATES) {
-            final int possibleDestination;
-
-            possibleDestination = this.pieceCoordinate + currentPossibleOffset;
+            final int possibleDestination = this.pieceCoordinate + currentPossibleOffset;
 
             if (isPossibleCoordinate(possibleDestination)) {
                 if (isEdgeSituation(this.pieceCoordinate, currentPossibleOffset)) {
@@ -55,7 +53,7 @@ public class King extends Piece {
     }
 
     private static boolean isEightColumn(final int currentPosition, final int possiblePosition) {
-        return BoardUtils.EIGHTH_COLUMN[currentPosition] && (possiblePosition == -7 || possiblePosition == 9 || possiblePosition == 1);
+        return BoardUtils.EIGHTH_COLUMN[currentPosition] && (possiblePosition == 9 || possiblePosition == -7 || possiblePosition == 1);
     }
 
     private static boolean isEdgeSituation(final int currentPosition, final int possiblePosition) {
