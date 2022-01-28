@@ -60,11 +60,11 @@ public class Knight extends Piece {
     }
 
     private static boolean isSeventhColumn(final int currentPosition, final int nextPosition){
-        return BoardUtils.FIRST_COLUMN[currentPosition] && (nextPosition == -6 || nextPosition == 10);
+        return BoardUtils.SEVENTH_COLUMN[currentPosition] && (nextPosition == -6 || nextPosition == 10);
     }
 
     private static boolean isEighthColumn(final int currentPosition, final int nextPosition){
-        return BoardUtils.FIRST_COLUMN[currentPosition] && (nextPosition == 17 || nextPosition == 10 ||
+        return BoardUtils.EIGHTH_COLUMN[currentPosition] && (nextPosition == 17 || nextPosition == 10 ||
                 nextPosition == -6 || nextPosition == -15);
     }
 

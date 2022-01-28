@@ -6,6 +6,9 @@ public class BoardUtils {
     public static final boolean[] SEVENTH_COLUMN = initColumn(6);
     public static final boolean[] EIGHTH_COLUMN = initColumn(7);
 
+    public static final boolean[] SECOND_ROW = null;
+    public static final boolean[] SEVENTH_ROW = null;
+
     public static final int TILES_NUMBER = 64;
     public static final int TILES_NUMBER_PER_ROW = 8;
 
@@ -18,7 +21,7 @@ public class BoardUtils {
 
         do{
             column[columnNumber] = true;
-            columnNumber += 8;
+            columnNumber += TILES_NUMBER_PER_ROW;
         } while (columnNumber < TILES_NUMBER);
 
         return column;
