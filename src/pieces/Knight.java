@@ -15,7 +15,7 @@ import static board.BoardUtils.isPossibleCoordinate;
 public class Knight extends Piece {
     private final int[] POSSIBLE_MOVES = {-17, -15, -10, -6, 6, 10, 15, 17};
 
-    protected Knight(final int pieceCoordinate, final Alliance pieceAlliance) {
+    public Knight(final int pieceCoordinate, final Alliance pieceAlliance) {
         super(pieceCoordinate, pieceAlliance);
     }
 
@@ -48,6 +48,11 @@ public class Knight extends Piece {
         }
 
         return ImmutableList.copyOf(legalMoves);
+    }
+
+    @Override
+    public String toString(){
+        return PieceType.KNIGHT.toString();
     }
 
     private static boolean isFirstColumn(final int currentPosition, final int nextPosition){

@@ -14,7 +14,7 @@ public class Bishop extends Piece {
 
     final private int[] POSSIBLE_COORDINATE_VECTOR = {-9, -7, 7, 9};
 
-    protected Bishop(final int pieceCoordinate, final Alliance pieceAlliance) {
+    public Bishop(final int pieceCoordinate, final Alliance pieceAlliance) {
         super(pieceCoordinate, pieceAlliance);
     }
 
@@ -48,6 +48,11 @@ public class Bishop extends Piece {
         }
 
         return ImmutableList.copyOf(legalMoves);
+    }
+
+    @Override
+    public String toString(){
+        return PieceType.BISHOP.toString();
     }
 
     private static boolean isFirstColumn(final int currentPosition, final int possiblePosition) {

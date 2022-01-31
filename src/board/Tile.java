@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableMap;
 import pieces.Piece;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public abstract class Tile {
@@ -21,6 +22,10 @@ public abstract class Tile {
         return ImmutableMap.copyOf(emptyTileMap);
     }
 
+    public static Tile createTile(final int tileCoordinate, final Piece piece) {
+        return piece != null ? new OccupiedTile(tileCoordinate, piece) : new EmptyTile(tileCoordinate);
+    }
+
     Tile(final int tileCoordinate) {
         this.tileCoordinate = tileCoordinate;
     }
@@ -36,6 +41,11 @@ public abstract class Tile {
         }
 
         @Override
+        public String toString(){
+            return "-";
+        }
+
+        @Override
         public boolean isTileOccupied() {
             return false;
         }
@@ -46,13 +56,18 @@ public abstract class Tile {
         }
     }
 
-    public static final class OccupiedTile extends Tile{
+    public static final class OccupiedTile extends Tile {
         private final Piece pieceOnTile;
 
         OccupiedTile(final int tileCoordinate,
                      final Piece pieceOnTile) {
             super(tileCoordinate);
             this.pieceOnTile = pieceOnTile;
+        }
+
+        @Override
+        public String toString(){
+            return getPiece().getPieceAlliance().isBlack() ? getPiece().toString().toLowerCase() : getPiece().toString();
         }
 
         @Override

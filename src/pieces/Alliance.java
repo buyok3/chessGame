@@ -8,12 +8,12 @@ public enum Alliance {
         }
 
         @Override
-        boolean isBlack() {
+        public boolean isBlack() {
             return false;
         }
 
         @Override
-        boolean isWhite() {
+        public boolean isWhite() {
             return true;
         }
     },
@@ -25,12 +25,12 @@ public enum Alliance {
         }
 
         @Override
-        boolean isBlack() {
+        public boolean isBlack() {
             return true;
         }
 
         @Override
-        boolean isWhite() {
+        public boolean isWhite() {
             return false;
         }
     };
@@ -39,6 +39,6 @@ public enum Alliance {
     Alliance(final String name){}
 
     abstract int getDirection();
-    abstract boolean isBlack();
+    public abstract boolean isBlack();
     abstract boolean isWhite();
 }
