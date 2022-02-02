@@ -15,7 +15,7 @@ public class Bishop extends Piece {
     final private int[] POSSIBLE_COORDINATE_VECTOR = {-9, -7, 7, 9};
 
     public Bishop(final int pieceCoordinate, final Alliance pieceAlliance) {
-        super(pieceCoordinate, pieceAlliance);
+        super(PieceType.BISHOP, pieceCoordinate, pieceAlliance);
     }
 
     @Override
@@ -51,7 +51,7 @@ public class Bishop extends Piece {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return PieceType.BISHOP.toString();
     }
 

@@ -15,7 +15,7 @@ public class Rook extends Piece {
     final private int[] POSSIBLE_COORDINATE_VECTOR = {-8, -1, 1, 8};
 
     public Rook(final int pieceCoordinate, final Alliance pieceAlliance) {
-        super(pieceCoordinate, pieceAlliance);
+        super(PieceType.ROOK, pieceCoordinate, pieceAlliance);
     }
 
     @Override

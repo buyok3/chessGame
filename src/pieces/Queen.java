@@ -15,7 +15,7 @@ public class Queen extends Piece {
     final private int[] POSSIBLE_COORDINATE_VECTOR = {-9, -8, -7, -1, 1, 7, 8, 9};
 
     public Queen(final int pieceCoordinate, final Alliance pieceAlliance) {
-        super(pieceCoordinate, pieceAlliance);
+        super(PieceType.QUEEN, pieceCoordinate, pieceAlliance);
     }
 
     @Override

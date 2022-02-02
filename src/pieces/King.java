@@ -16,7 +16,7 @@ public class King extends Piece {
     final private int[] POSSIBLE_COORDINATES = {-9, -8, -7, -1, 1, 7, 8, 9};
 
     public King(final int pieceCoordinate, final Alliance pieceAlliance) {
-        super(pieceCoordinate, pieceAlliance);
+        super(PieceType.KING, pieceCoordinate, pieceAlliance);
     }
 
     @Override
@@ -49,7 +49,7 @@ public class King extends Piece {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return PieceType.KING.toString();
     }
 

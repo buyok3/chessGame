@@ -2,6 +2,9 @@ package board;
 
 import com.google.common.collect.ImmutableList;
 import pieces.*;
+import player.BlackPlayer;
+import player.Player;
+import player.WhitePlayer;
 
 import java.util.*;
 
@@ -11,13 +14,20 @@ public class Board {
     private final Collection<Piece> blackPieces;
     final Collection<Move> whiteLegalMoves;
     final Collection<Move> blackLegalMoves;
+    private final WhitePlayer whitePlayer;
+    private final BlackPlayer blackPlayer;
+    private final Player currentPlayer;
 
-    private Board(Builder builder) {
+    private Board(final Builder builder) {
         this.gameBoard = createGameBoard(builder);
         this.whitePieces = calculateAlivePieces(this.gameBoard, Alliance.WHITE);
         this.blackPieces = calculateAlivePieces(this.gameBoard, Alliance.BLACK);
         this.whiteLegalMoves = calculateLegalMoves(this.whitePieces);
         this.blackLegalMoves = calculateLegalMoves(this.blackPieces);
+
+        this.whitePlayer = new WhitePlayer(this, whiteLegalMoves, blackLegalMoves);
+        this.blackPlayer = new BlackPlayer(this, whiteLegalMoves, blackLegalMoves);
+        this.currentPlayer = builder.nextMoveMaker.choosePlayer(this.whitePlayer, this.blackPlayer);
     }
 
     @Override
@@ -31,6 +41,26 @@ public class Board {
             }
         }
         return builder.toString();
+    }
+
+    public Collection<Piece> getBlackPieces(){
+        return this.blackPieces;
+    }
+
+    public Collection<Piece> getWhitePieces(){
+        return this.whitePieces;
+    }
+
+    public Player whitePlayer(){
+        return this.whitePlayer;
+    }
+
+    public Player blackPlayer(){
+        return this.blackPlayer;
+    }
+
+    public Player currentPlayer(){
+        return this.currentPlayer;
     }
 
     private static Collection<Piece> calculateAlivePieces(final List<Tile> gameBoard,
