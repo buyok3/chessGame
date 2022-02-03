@@ -55,6 +55,11 @@ public class Rook extends Piece {
         return PieceType.ROOK.toString();
     }
 
+    @Override
+    public Piece movePiece(Move move) {
+        return new Rook(move.getDestinationCoordinate(), move.getMovedPiece().getPieceAlliance());
+    }
+
     private static boolean isFirstColumn(final int currentPosition, final int possiblePosition) {
         return BoardUtils.FIRST_COLUMN[currentPosition] && possiblePosition == -1;
     }

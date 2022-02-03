@@ -55,6 +55,11 @@ public class Knight extends Piece {
         return PieceType.KNIGHT.toString();
     }
 
+    @Override
+    public Piece movePiece(Move move) {
+        return new Knight(move.getDestinationCoordinate(), move.getMovedPiece().getPieceAlliance());
+    }
+
     private static boolean isFirstColumn(final int currentPosition, final int nextPosition){
         return BoardUtils.FIRST_COLUMN[currentPosition] && (nextPosition == -17 || nextPosition == -10 ||
                 nextPosition == 6 || nextPosition == 15);

@@ -1,6 +1,7 @@
 package board;
 
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Iterables;
 import pieces.*;
 import player.BlackPlayer;
 import player.Player;
@@ -147,10 +148,15 @@ public class Board {
         return gameBoard.get(tileCoordinate);
     }
 
+    public Iterable<Move> getAllLegalMoves() {
+        return Iterables.unmodifiableIterable(Iterables.concat(this.whitePlayer.getLegalMoves(), this.blackPlayer.getLegalMoves()));
+    }
+
     public static class Builder {
 
         Map<Integer, Piece> boardConfig;
         Alliance nextMoveMaker;
+        Pawn enPassantPawn;
 
         public Builder() {
             this.boardConfig = new HashMap<>();
@@ -168,6 +174,10 @@ public class Board {
 
         public Board build() {
             return new Board(this);
+        }
+
+        public void setEnPassantPawn(Pawn enPassantPawn) {
+            this.enPassantPawn = enPassantPawn;
         }
     }
 }

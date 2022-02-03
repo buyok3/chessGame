@@ -53,6 +53,11 @@ public class King extends Piece {
         return PieceType.KING.toString();
     }
 
+    @Override
+    public Piece movePiece(Move move) {
+        return new King(move.getDestinationCoordinate(), move.getMovedPiece().getPieceAlliance());
+    }
+
     private static boolean isFirstColumn(final int currentPosition, final int possiblePosition) {
         return BoardUtils.FIRST_COLUMN[currentPosition] && (possiblePosition == -9 || possiblePosition == 7 || possiblePosition == -1);
     }

@@ -55,6 +55,11 @@ public class Queen extends Piece {
         return PieceType.QUEEN.toString();
     }
 
+    @Override
+    public Piece movePiece(Move move) {
+        return new Queen(move.getDestinationCoordinate(), move.getMovedPiece().getPieceAlliance());
+    }
+
     private static boolean isFirstColumn(final int currentPosition, final int possiblePosition) {
         return BoardUtils.FIRST_COLUMN[currentPosition] && (possiblePosition == 7 || possiblePosition == -9 ||
                 possiblePosition == -1);

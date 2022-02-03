@@ -23,11 +23,11 @@ public abstract class Player {
     Player(final Board board, final Collection<Move> legalMoves, final Collection<Move> opponentMoves) {
         this.board = board;
         this.playerKing = findKing();
-        this.legalMoves = legalMoves;
+        this.legalMoves = ImmutableList.copyOf(legalMoves);
         this.isInCheck = !Player.calculateAttackOnTile(this.playerKing.getPiecePosition(), opponentMoves).isEmpty();
     }
 
-    private static Collection<Move> calculateAttackOnTile(final int piecePosition, Collection<Move> opponentMoves) {
+    protected static Collection<Move> calculateAttackOnTile(final int piecePosition, Collection<Move> opponentMoves) {
         final List<Move> attackMoves = new ArrayList<>();
         for (final Move move : opponentMoves) {
             if (piecePosition == move.getDestinationCoordinate()) {
@@ -108,4 +108,6 @@ public abstract class Player {
     public abstract Alliance getAlliance();
 
     public abstract Player getOpponent();
+
+    protected abstract Collection<Move> calculateKingCastles(Collection<Move> playerLegalMoves, Collection<Move> opponentsLegalMoves);
 }
