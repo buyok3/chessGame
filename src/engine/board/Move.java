@@ -4,8 +4,6 @@ import engine.pieces.Pawn;
 import engine.pieces.Piece;
 import engine.pieces.Rook;
 
-import java.util.List;
-
 public abstract class Move {
     protected final Board board;
     protected final int destinationCoordinate;
@@ -106,31 +104,6 @@ public abstract class Move {
             }
         }
         return "";
-    }
-
-    public enum MoveStatus {
-
-        DONE {
-            @Override
-            public boolean isDone() {
-                return true;
-            }
-        },
-        ILLEGAL_MOVE {
-            @Override
-            public boolean isDone() {
-                return false;
-            }
-        },
-        LEAVES_PLAYER_IN_CHECK {
-            @Override
-            public boolean isDone() {
-                return false;
-            }
-        };
-
-        public abstract boolean isDone();
-
     }
 
     public static class PawnPromotion
@@ -272,7 +245,7 @@ public abstract class Move {
 
         @Override
         public String toString() {
-            return BoardUtils.INSTANCE.getPositionAtCoordinate(this.movedPiece.getPiecePosition()).substring(0, 1) + "x" +
+            return BoardUtils.INSTANCE.getPositionAtCoordinate(this.movedPiece.getPiecePosition()).charAt(0) + "x" +
                     BoardUtils.INSTANCE.getPositionAtCoordinate(this.destinationCoordinate);
         }
 

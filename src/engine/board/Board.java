@@ -1,7 +1,5 @@
 package engine.board;
 
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Iterables;
 import engine.pieces.*;
 import engine.player.BlackPlayer;
 import engine.player.Player;

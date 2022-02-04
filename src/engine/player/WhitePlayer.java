@@ -39,7 +39,7 @@ public class WhitePlayer extends Player{
                     if(Player.calculateAttacksOnTile(61, opponentLegals).isEmpty() &&
                             Player.calculateAttacksOnTile(62, opponentLegals).isEmpty() &&
                             kingSideRook.getPieceType() == ROOK) {
-                        if(!BoardUtils.isKingPawnTrap(this.board, this.playerKing, 52)) {
+                        if(BoardUtils.isKingPawnTrap(this.board, this.playerKing, 52)) {
                             kingCastles.add(new Move.KingSideCastleMove(this.board, this.playerKing, 62, (Rook) kingSideRook, kingSideRook.getPiecePosition(), 61));
                         }
                     }
@@ -52,7 +52,7 @@ public class WhitePlayer extends Player{
                 if(queenSideRook != null && queenSideRook.isFirstMove()) {
                     if(Player.calculateAttacksOnTile(58, opponentLegals).isEmpty() &&
                             Player.calculateAttacksOnTile(59, opponentLegals).isEmpty() && queenSideRook.getPieceType() == ROOK) {
-                        if(!BoardUtils.isKingPawnTrap(this.board, this.playerKing, 52)) {
+                        if(BoardUtils.isKingPawnTrap(this.board, this.playerKing, 52)) {
                             kingCastles.add(new Move.QueenSideCastleMove(this.board, this.playerKing, 58, (Rook) queenSideRook, queenSideRook.getPiecePosition(), 59));
                         }
                     }
