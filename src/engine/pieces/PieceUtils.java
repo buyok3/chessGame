@@ -14,28 +14,23 @@ enum PieceUtils {
     private final Table<Alliance, Integer, Bishop> ALL_POSSIBLE_BISHOPS = PieceUtils.createAllPossibleMovedBishops();
     private final Table<Alliance, Integer, Pawn> ALL_POSSIBLE_PAWNS = PieceUtils.createAllPossibleMovedPawns();
 
-    Pawn getMovedPawn(final Alliance alliance,
-                      final int destinationCoordinate) {
+    Pawn getMovedPawn(final Alliance alliance, final int destinationCoordinate) {
         return ALL_POSSIBLE_PAWNS.get(alliance, destinationCoordinate);
     }
 
-    Knight getMovedKnight(final Alliance alliance,
-                          final int destinationCoordinate) {
+    Knight getMovedKnight(final Alliance alliance, final int destinationCoordinate) {
         return ALL_POSSIBLE_KNIGHTS.get(alliance, destinationCoordinate);
     }
 
-    Bishop getMovedBishop(final Alliance alliance,
-                          final int destinationCoordinate) {
+    Bishop getMovedBishop(final Alliance alliance, final int destinationCoordinate) {
         return ALL_POSSIBLE_BISHOPS.get(alliance, destinationCoordinate);
     }
 
-    Rook getMovedRook(final Alliance alliance,
-                      final int destinationCoordinate) {
+    Rook getMovedRook(final Alliance alliance, final int destinationCoordinate) {
         return ALL_POSSIBLE_ROOKS.get(alliance, destinationCoordinate);
     }
 
-    Queen getMovedQueen(final Alliance alliance,
-                        final int destinationCoordinate) {
+    Queen getMovedQueen(final Alliance alliance, final int destinationCoordinate) {
         return ALL_POSSIBLE_QUEENS.get(alliance, destinationCoordinate);
     }
 

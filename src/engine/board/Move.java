@@ -97,8 +97,8 @@ public abstract class Move {
     }
 
     String disambiguationFile() {
-        for(final Move move : this.board.currentPlayer().getLegalMoves()) {
-            if(move.getDestinationCoordinate() == this.destinationCoordinate && !this.equals(move) &&
+        for (final Move move : this.board.currentPlayer().getLegalMoves()) {
+            if (move.getDestinationCoordinate() == this.destinationCoordinate && !this.equals(move) &&
                     this.movedPiece.getPieceType().equals(move.getMovedPiece().getPieceType())) {
                 return BoardUtils.INSTANCE.getPositionAtCoordinate(this.movedPiece.getPiecePosition()).substring(0, 1);
             }
@@ -158,7 +158,6 @@ public abstract class Move {
             return BoardUtils.INSTANCE.getPositionAtCoordinate(this.movedPiece.getPiecePosition()) + "-" +
                     BoardUtils.INSTANCE.getPositionAtCoordinate(this.destinationCoordinate) + "=" + this.promotionPiece.getPieceType();
         }
-
     }
 
     public static class MajorMove
@@ -280,7 +279,7 @@ public abstract class Move {
         public Board undo() {
             final Board.Builder builder = new Board.Builder();
             this.board.getAllPieces().forEach(builder::setPiece);
-            builder.setEnPassantPawn((Pawn)this.getAttackedPiece());
+            builder.setEnPassantPawn((Pawn) this.getAttackedPiece());
             builder.setMoveMaker(this.board.currentPlayer().getAlliance());
             return builder.build();
         }
@@ -306,7 +305,7 @@ public abstract class Move {
             final Board.Builder builder = new Board.Builder();
             this.board.currentPlayer().getActivePieces().stream().filter(piece -> !this.movedPiece.equals(piece)).forEach(builder::setPiece);
             this.board.currentPlayer().getOpponent().getActivePieces().forEach(builder::setPiece);
-            final Pawn movedPawn = (Pawn)this.movedPiece.movePiece(this);
+            final Pawn movedPawn = (Pawn) this.movedPiece.movePiece(this);
             builder.setPiece(movedPawn);
             builder.setEnPassantPawn(movedPawn);
             builder.setMoveMaker(this.board.currentPlayer().getOpponent().getAlliance());

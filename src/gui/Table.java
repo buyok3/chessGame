@@ -1,6 +1,5 @@
 package gui;
 
-import com.google.common.collect.Lists;
 import engine.board.Board;
 import engine.board.BoardUtils;
 import engine.board.Move;
@@ -18,8 +17,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 import static javax.swing.JDialog.setDefaultLookAndFeelDecorated;
@@ -35,9 +32,7 @@ public class Table {
     private Board chessBoard;
     private Piece sourceTile;
     private Piece movedPiece;
-    private BoardDirection boardDirection;
     private final String pieceIconPath;
-    private final boolean highlightLegalMoves;
     private final Color lightTileColor = Color.decode("#FFFACD");
     private final Color darkTileColor = Color.decode("#593E1A");
 
@@ -54,8 +49,6 @@ public class Table {
         this.gameFrame.setJMenuBar(tableMenuBar);
         this.gameFrame.setLayout(new BorderLayout());
         this.chessBoard = Board.createStandardBoard();
-        this.boardDirection = BoardDirection.NORMAL;
-        this.highlightLegalMoves = true;
         this.pieceIconPath = "pics/simple/";
         this.gameHistoryPanel = new GameHistoryPanel();
         this.takenPiecesPanel = new TakenPiecesPanel();
@@ -97,10 +90,6 @@ public class Table {
 
     private TakenPiecesPanel getTakenPiecesPanel() {
         return this.takenPiecesPanel;
-    }
-
-    private boolean getHighlightLegalMoves() {
-        return this.highlightLegalMoves;
     }
 
     public void show() {
@@ -238,43 +227,13 @@ public class Table {
 
         void drawBoard(final Board board) {
             removeAll();
-            for (final TilePanel boardTile : boardDirection.traverse(boardTiles)) {
+            for (final TilePanel boardTile : boardTiles) {
                 boardTile.drawTile(board);
                 add(boardTile);
             }
             validate();
             repaint();
         }
-    }
-
-    enum BoardDirection {
-        NORMAL {
-            @Override
-            List<TilePanel> traverse(final List<TilePanel> boardTiles) {
-                return boardTiles;
-            }
-
-            @Override
-            BoardDirection opposite() {
-                return FLIPPED;
-            }
-        },
-        FLIPPED {
-            @Override
-            List<TilePanel> traverse(final List<TilePanel> boardTiles) {
-                return Lists.reverse(boardTiles);
-            }
-
-            @Override
-            BoardDirection opposite() {
-                return NORMAL;
-            }
-        };
-
-        abstract List<TilePanel> traverse(final List<TilePanel> boardTiles);
-
-        abstract BoardDirection opposite();
-
     }
 
     public static class MoveLog {
@@ -379,7 +338,6 @@ public class Table {
             assignTileColor();
             assignTilePieceIcon(board);
             highlightTileBorder(board);
-            highlightLegals(board);
             validate();
             repaint();
         }
@@ -392,28 +350,6 @@ public class Table {
             } else {
                 setBorder(BorderFactory.createLineBorder(Color.GRAY));
             }
-        }
-
-        private void highlightLegals(final Board board) {
-            if (Table.get().getHighlightLegalMoves()) {
-                for (final Move move : pieceLegalMoves(board)) {
-                    if (move.getDestinationCoordinate() == this.tileId) {
-                        try {
-                            removeAll();
-                            add(new JLabel(new ImageIcon(ImageIO.read(new File("pics/misc/green_dot.png")))));
-                        } catch (final IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-            }
-        }
-
-        private Collection<Move> pieceLegalMoves(final Board board) {
-            if (movedPiece != null && movedPiece.getPieceAllegiance() == board.currentPlayer().getAlliance()) {
-                return movedPiece.calculateLegalMoves(board);
-            }
-            return Collections.emptyList();
         }
 
         private void assignTilePieceIcon(final Board board) {

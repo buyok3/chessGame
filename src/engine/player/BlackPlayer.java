@@ -14,7 +14,7 @@ import java.util.List;
 
 import static engine.pieces.Piece.PieceType.ROOK;
 
-public class BlackPlayer extends Player{
+public class BlackPlayer extends Player {
     public BlackPlayer(final Board board,
                        final Collection<Move> whiteStandardLegals,
                        final Collection<Move> blackStandardLegals) {

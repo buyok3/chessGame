@@ -35,7 +35,7 @@ public enum BoardUtils {
         do {
             column[columnNumber] = true;
             columnNumber += NUM_TILES_PER_ROW;
-        } while(columnNumber < NUM_TILES);
+        } while (columnNumber < NUM_TILES);
         return Collections.unmodifiableList(Arrays.asList((column)));
     }
 
@@ -45,7 +45,7 @@ public enum BoardUtils {
         do {
             row[rowNumber] = true;
             rowNumber++;
-        } while(rowNumber % NUM_TILES_PER_ROW != 0);
+        } while (rowNumber % NUM_TILES_PER_ROW != 0);
         return Collections.unmodifiableList(Arrays.asList(row));
     }
 
@@ -79,12 +79,6 @@ public enum BoardUtils {
 
     public String getPositionAtCoordinate(final int coordinate) {
         return ALGEBRAIC_NOTATION.get(coordinate);
-    }
-
-    public static boolean kingThreat(final Move move) {
-        final Board board = move.getBoard();
-        final MoveTransition transition = board.currentPlayer().makeMove(move);
-        return transition.getToBoard().currentPlayer().isInCheck();
     }
 
     public static boolean isKingPawnTrap(final Board board,

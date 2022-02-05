@@ -34,21 +34,19 @@ public class GameHistoryPanel extends JPanel {
             final String moveText = move.toString();
             if (move.getMovedPiece().getPieceAllegiance().isWhite()) {
                 this.model.setValueAt(moveText, currentRow, 0);
-            }
-            else if (move.getMovedPiece().getPieceAllegiance().isBlack()) {
+            } else if (move.getMovedPiece().getPieceAllegiance().isBlack()) {
                 this.model.setValueAt(moveText, currentRow, 1);
                 currentRow++;
             }
         }
 
-        if(moveHistory.getMoves().size() > 0) {
+        if (moveHistory.getMoves().size() > 0) {
             final Move lastMove = moveHistory.getMoves().get(moveHistory.size() - 1);
             final String moveText = lastMove.toString();
 
             if (lastMove.getMovedPiece().getPieceAllegiance().isWhite()) {
                 this.model.setValueAt(moveText + calculateCheckAndCheckMateHash(board), currentRow, 0);
-            }
-            else if (lastMove.getMovedPiece().getPieceAllegiance().isBlack()) {
+            } else if (lastMove.getMovedPiece().getPieceAllegiance().isBlack()) {
                 this.model.setValueAt(moveText + calculateCheckAndCheckMateHash(board), currentRow - 1, 1);
             }
         }
@@ -59,9 +57,9 @@ public class GameHistoryPanel extends JPanel {
     }
 
     private static String calculateCheckAndCheckMateHash(final Board board) {
-        if(board.currentPlayer().isInCheckMate()) {
+        if (board.currentPlayer().isInCheckMate()) {
             return "#";
-        } else if(board.currentPlayer().isInCheck()) {
+        } else if (board.currentPlayer().isInCheck()) {
             return "+";
         }
         return "";
@@ -109,7 +107,7 @@ public class GameHistoryPanel extends JPanel {
 
         @Override
         public int getRowCount() {
-            if(this.values == null) {
+            if (this.values == null) {
                 return 0;
             }
             return this.values.size();
@@ -123,7 +121,7 @@ public class GameHistoryPanel extends JPanel {
         @Override
         public Object getValueAt(final int row, final int col) {
             final Row currentRow = this.values.get(row);
-            if(col == 0) {
+            if (col == 0) {
                 return currentRow.getWhiteMove();
             } else if (col == 1) {
                 return currentRow.getBlackMove();
@@ -136,17 +134,17 @@ public class GameHistoryPanel extends JPanel {
                                final int row,
                                final int col) {
             final Row currentRow;
-            if(this.values.size() <= row) {
+            if (this.values.size() <= row) {
                 currentRow = new Row();
                 this.values.add(currentRow);
             } else {
                 currentRow = this.values.get(row);
             }
-            if(col == 0) {
+            if (col == 0) {
                 currentRow.setWhiteMove((String) aValue);
                 fireTableRowsInserted(row, row);
-            } else  if(col == 1) {
-                currentRow.setBlackMove((String)aValue);
+            } else if (col == 1) {
+                currentRow.setBlackMove((String) aValue);
                 fireTableCellUpdated(row, col);
             }
         }
