@@ -546,4 +546,3 @@ public abstract class Move {
         }
     }
 }
-

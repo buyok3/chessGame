@@ -215,9 +215,9 @@ public class Table {
             super(new GridLayout(8, 8));
             this.boardTiles = new ArrayList<>();
             for (int i = 0; i < BoardUtils.NUM_TILES; i++) {
-                final TilePanel tilePanel = new TilePanel(this, i);
-                this.boardTiles.add(tilePanel);
-                add(tilePanel);
+                    final TilePanel tilePanel = new TilePanel(this, i);
+                    this.boardTiles.add(tilePanel);
+                    add(tilePanel);
             }
             setPreferredSize(BOARD_PANEL_DIMENSION);
             setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));

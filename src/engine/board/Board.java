@@ -160,7 +160,7 @@ public class Board {
         Map<Integer, Piece> boardConfig;
         Alliance nextMoveMaker;
         Pawn enPassantPawn;
-        Move transitionMove;
+        Move transitionMove ;
 
         public Builder() {
             this.boardConfig = new HashMap<>(32, 1.0f);
